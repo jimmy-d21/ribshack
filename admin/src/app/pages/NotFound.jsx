@@ -1,35 +1,31 @@
-import { useNavigate } from 'react-router';
-import { Button } from '../components/ui/button';
-import { Home, ArrowLeft } from 'lucide-react';
+import React from "react";
+import { Box, Typography, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-export default function NotFound() {
+const NotFound = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 to-red-50 p-4">
-      <div className="text-center">
-        <h1 className="text-9xl font-bold text-orange-600">404</h1>
-        <h2 className="text-3xl font-bold text-gray-900 mt-4">Page Not Found</h2>
-        <p className="text-gray-600 mt-2 mb-8">
-          The page you're looking for doesn't exist in the Ribshack HQ system.
-        </p>
-        <div className="flex gap-4 justify-center">
-          <Button
-            variant="outline"
-            onClick={() => navigate(-1)}
-          >
-            <ArrowLeft className="size-4 mr-2" />
-            Go Back
-          </Button>
-          <Button
-            onClick={() => navigate('/admin/analytics')}
-            className="bg-gradient-to-r from-orange-500 to-red-600"
-          >
-            <Home className="size-4 mr-2" />
-            Go to Dashboard
-          </Button>
-        </div>
-      </div>
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
+      <Typography variant="h1" color="error">
+        404
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        Page Not Found
+      </Typography>
+      <Button variant="contained" onClick={() => navigate("/")}>
+        Go Home
+      </Button>
+    </Box>
   );
-}
+};
+
+export default NotFound;
