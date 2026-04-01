@@ -1,18 +1,18 @@
-import { Outlet, useNavigate, useLocation } from 'react-router';
-import { useEffect, useState } from 'react';
-import { Button } from '../components/ui/button';
-import { ScrollArea } from '../components/ui/scroll-area';
-import { 
-  LayoutDashboard, 
-  Store, 
-  Inbox, 
-  Package, 
-  FileText, 
+import { Outlet, useNavigate, useLocation } from "react-router";
+import { useEffect, useState } from "react";
+import { Button } from "../components/ui/button";
+import { ScrollArea } from "../components/ui/scroll-area";
+import {
+  LayoutDashboard,
+  Store,
+  Inbox,
+  Package,
+  FileText,
   LogOut,
   Menu,
   X,
-  Flame
-} from 'lucide-react';
+  Flame,
+} from "lucide-react";
 
 export default function DashboardLayout() {
   const navigate = useNavigate();
@@ -21,23 +21,27 @@ export default function DashboardLayout() {
 
   useEffect(() => {
     // Check authentication
-    const isAuth = localStorage.getItem('ribshack_admin_auth');
+    const isAuth = localStorage.getItem("ribshack_admin_auth");
     if (!isAuth) {
-      navigate('/login');
+      navigate("/login");
     }
   }, [navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem('ribshack_admin_auth');
-    navigate('/login');
+    localStorage.removeItem("ribshack_admin_auth");
+    navigate("/login");
   };
 
   const menuItems = [
-    { path: '/admin/analytics', icon: LayoutDashboard, label: 'Global Analytics' },
-    { path: '/admin/branches', icon: Store, label: 'Branch Management' },
-    { path: '/admin/requests', icon: Inbox, label: 'Request Center' },
-    { path: '/admin/products', icon: Package, label: 'Product Catalog' },
-    { path: '/admin/finance', icon: FileText, label: 'Finance & VAT' },
+    {
+      path: "/admin/analytics",
+      icon: LayoutDashboard,
+      label: "Global Analytics",
+    },
+    { path: "/admin/branches", icon: Store, label: "Branch Management" },
+    { path: "/admin/requests", icon: Inbox, label: "Request Center" },
+    { path: "/admin/products", icon: Package, label: "Product Catalog" },
+    { path: "/admin/finance", icon: FileText, label: "Finance & VAT" },
   ];
 
   return (
@@ -51,13 +55,15 @@ export default function DashboardLayout() {
       </button>
 
       {/* Sidebar */}
-      <aside className={`
+      <aside
+        className={`
         fixed lg:static inset-y-0 left-0 z-40
         w-72 bg-gradient-to-b from-orange-600 via-red-600 to-red-700 text-white
         transform transition-transform duration-300 ease-in-out
         shadow-2xl
-        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-      `}>
+        ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
+      `}
+      >
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="p-6 border-b border-orange-500/30">
@@ -67,7 +73,9 @@ export default function DashboardLayout() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold">Ribshack</h1>
-                <p className="text-xs text-orange-100 mt-0.5">HQ Control Tower</p>
+                <p className="text-xs text-orange-100 mt-0.5">
+                  HQ Control Tower
+                </p>
               </div>
             </div>
           </div>
@@ -88,13 +96,16 @@ export default function DashboardLayout() {
                     className={`
                       w-full flex items-center gap-3 px-4 py-3.5 rounded-xl
                       transition-all duration-200 group
-                      ${isActive 
-                        ? 'bg-white text-orange-600 font-semibold shadow-lg transform scale-105' 
-                        : 'text-orange-50 hover:bg-white/10 hover:translate-x-1'
+                      ${
+                        isActive
+                          ? "bg-white text-orange-600 font-semibold shadow-lg transform scale-105"
+                          : "text-orange-50 hover:bg-white/10 hover:translate-x-1"
                       }
                     `}
                   >
-                    <Icon className={`size-5 ${isActive ? 'text-orange-600' : 'group-hover:text-white'}`} />
+                    <Icon
+                      className={`size-5 ${isActive ? "text-orange-600" : "group-hover:text-white"}`}
+                    />
                     <span className="text-sm">{item.label}</span>
                   </button>
                 );
